@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Management</title>
+</head>
+<body>
+<h1>Data Management Portal</h1>
+
+{% if message %}
+<p style="color: green;">{{ message }}</p>
+{% endif %}
+
+<h2>Customer</h2>
+<form action="{% url 'upload_customer' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="csv_file" required>
+    <button type="submit">Upload Customer CSV</button>
+</form>
+<a href="{% url 'export_customer' %}">Export Customers</a>
+
+<h2>Books</h2>
+<form action="{% url 'upload_book' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="csv_file" required>
+    <button type="submit">Upload Book CSV</button>
+</form>
+<a href="{% url 'export_book' %}">Export Books</a>
+
+<h2>Bookshops</h2>
+<form action="{% url 'upload_bookshop' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="csv_file" required>
+    <button type="submit">Upload Bookshop CSV</button>
+</form>
+<a href="{% url 'export_bookshop' %}">Export Bookshops</a>
+
+<h2>Book Availability</h2>
+<form action="{% url 'upload_availability' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="csv_file" required>
+    <button type="submit">Upload Availability CSV</button>
+</form>
+<a href="{% url 'export_availability' %}">Export Availability</a>
+
+</body>
+</html>
