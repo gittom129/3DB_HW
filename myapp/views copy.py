@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from .models import Customer, Book, Bookshop, BookAvailability
 import csv
 from io import TextIOWrapper
-from django.contrib import messages
 
 def home(request):
     return render(request, "home.html")
@@ -134,13 +133,3 @@ def export_availability(request):
     for a in BookAvailability.objects.all():
         writer.writerow([a.book, a.edition, a.shop, a.available_copies])
     return response
-
-def clear_database(request):
-    if request.method == "POST":
-        BookAvailability.objects.all().delete()
-        Customer.objects.all().delete()
-        Book.objects.all().delete()
-        Bookshop.objects.all().delete()
-        messages.success(request, "All database records have been cleared.")
-        return redirect("home")  # Assuming your home view is named 'home'
-    return redirect("home")

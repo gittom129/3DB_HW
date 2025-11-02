@@ -17,4 +17,7 @@ urlpatterns = [
     path('export/book/', views.export_book, name='export_book'),
     path('export/bookshop/', views.export_bookshop, name='export_bookshop'),
     path('export/availability/', views.export_availability, name='export_availability'),
+
+     path('clear-database/', views.clear_database, name='clear_database'),
+
 ]
