@@ -33,8 +33,12 @@ class Bookshop(models.Model):
 
 class BookAvailability(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    edition = models.CharField(max_length=50,default="1st")  # keep track of the specific edition
     shop = models.ForeignKey(Bookshop, on_delete=models.CASCADE)
     available_copies = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = ('book', 'edition', 'shop')  # prevent duplicates
 
     def __str__(self):
         return f"{self.book.title} @ {self.shop.shop_name}"
